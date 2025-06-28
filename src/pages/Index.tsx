@@ -207,6 +207,37 @@ const Index = () => {
           </div>
         </section>
 
+        <section className="container mx-auto px-4 py-20">Add commentMore actions
+          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-12">
+            <div className="text-center max-w-3xl mx-auto">
+              <div className="flex justify-center mb-6">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-2xl flex items-center justify-center">
+                  <MessageCircle className="w-8 h-8 text-white" />
+                </div>
+              </div>
+
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+                Fun Zone
+              </h3>
+
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                rate openPR in a fun way!
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
+                  click to play
+                </Button>
+                <Button variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-6 py-3 rounded-full font-semibold transition-all duration-300">
+                  placehoelder
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        Add comment
+
         {/* Community Section */}
         <section className="container mx-auto px-4 py-20">
           <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-12">
@@ -230,7 +261,7 @@ const Index = () => {
                   Join Discord Community
                 </Button>
                 <Button variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  Browse Projects
+                  placehoplder
                 </Button>
               </div>
             </div>
