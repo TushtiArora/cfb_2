@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, LogOut, Search } from "lucide-react";
+import { Menu, X, User, LogOut, Search, Users, Crown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -46,6 +46,20 @@ const Header = () => {
             >
               <Search className="w-4 h-4" />
               Explore
+            </Link>
+            <Link 
+              to="/mentors" 
+              className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10"
+            >
+              <Users className="w-4 h-4" />
+              Mentors
+            </Link>
+            <Link 
+              to="/pro" 
+              className="text-yellow-300 hover:text-yellow-200 transition-colors flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-yellow-500/10"
+            >
+              <Crown className="w-4 h-4" />
+              Pro
             </Link>
             {user ? (
               <>
@@ -99,6 +113,22 @@ const Header = () => {
             >
               <Search className="w-4 h-4" />
               Explore
+            </Link>
+            <Link 
+              to="/mentors" 
+              className="text-gray-300 hover:text-white transition-colors flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/10 w-full"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Users className="w-4 h-4" />
+              Mentors
+            </Link>
+            <Link 
+              to="/pro" 
+              className="text-yellow-300 hover:text-yellow-200 transition-colors flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-yellow-500/10 w-full"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Crown className="w-4 h-4" />
+              Pro
             </Link>
             {user ? (
               <>

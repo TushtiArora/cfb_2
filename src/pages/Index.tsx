@@ -1,8 +1,9 @@
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Star, Users, Code, Award, Zap, Github, MessageCircle } from "lucide-react";
+import { ArrowRight, Star, Users, Code, Award, Zap, Github, MessageCircle, Heart, CheckCircle, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -146,6 +147,66 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Become a Mentor Section */}
+        <section className="container mx-auto px-4 py-20">
+          <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex justify-center mb-6">
+                <div className="bg-gradient-to-r from-emerald-500 to-teal-500 w-16 h-16 rounded-2xl flex items-center justify-center">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent text-center">
+                💡 Become a Mentor on openPR
+              </h3>
+              
+              <p className="text-xl text-gray-300 mb-8 leading-relaxed text-center max-w-2xl mx-auto">
+                Help new contributors grow. Guide, review, and support them — all while growing your own open-source impact.
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                  <h4 className="text-2xl font-semibold text-white mb-4">🛠 You'll:</h4>
+                  <ul className="space-y-3 text-gray-300">
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                      Review PRs
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                      Clarify issues
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                      Offer guidance via chat
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                      Share your wisdom with new developers
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <blockquote className="text-lg italic text-gray-300 mb-4">
+                    💬 "Mentorship should be about connection, not complexity. That's what we believe at openPR."
+                  </blockquote>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <Link to="/mentors">
+                  <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 text-lg">
+                    Become a Mentor
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Community Section */}
         <section className="container mx-auto px-4 py-20">
           <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-12">
@@ -169,14 +230,12 @@ const Index = () => {
                   Join Discord Community
                 </Button>
                 <Button variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  placehoelder
+                  Browse Projects
                 </Button>
               </div>
             </div>
           </div>
         </section>
-
-
 
         {/* CTA Section */}
         <section className="container mx-auto px-4 py-20">
@@ -206,37 +265,6 @@ const Index = () => {
             )}
           </div>
         </section>
-
-        <section className="container mx-auto px-4 py-20">
-          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl border border-white/10 p-8 md:p-12">
-            <div className="text-center max-w-3xl mx-auto">
-              <div className="flex justify-center mb-6">
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 w-16 h-16 rounded-2xl flex items-center justify-center">
-                  <MessageCircle className="w-8 h-8 text-white" />
-                </div>
-              </div>
-
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
-                Fun Zone
-              </h3>
-
-              <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                rate openPR in a fun way!
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  click to play
-                </Button>
-                 <Button variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  placehoelder 
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-
       </main>
 
       <Footer />

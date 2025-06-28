@@ -9,6 +9,8 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Explore from "./pages/Explore";
+import Mentors from "./pages/Mentors";
+import Pro from "./pages/Pro";
 import NotFound from "./pages/NotFound";
 import ProfileSetup from "./pages/ProfileSetup";
 
@@ -27,6 +29,9 @@ const App = () => (
             <Route path="/profile-setup" element={<ProfileSetup />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/mentors" element={<Mentors />} />
+            <Route path="/pro" element={<Pro />} />
+            <Route path="/pricing" element={<Pro />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
