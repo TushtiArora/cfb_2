@@ -9,9 +9,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Silk from "@/components/Silk";
 import { useAuth } from "@/contexts/AuthContext";
+import FingerRating from "@/components/dashboards/FingerRating";
 
 const Index = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [showRating, setShowRating] = useState(false);
   const { user } = useAuth();
 
   const features = [
@@ -225,9 +227,47 @@ const Index = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
+               
+              {/* <>
+                <button
+                  onClick={() => setShowRating(true)}
+                  className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300"
+                >
+                  Click to Play
+                </button>
+
+                <div
+                  className={`mt-4 border rounded p-4 shadow bg-gray-50 transition-opacity duration-500 ${
+                    showRating ? "opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <FingerRating />
+                  <button
+                    onClick={() => setShowRating(false)}
+                    className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+                  >
+                    Close
+                  </button>
+                </div>
+              </> */}
+
+                <Button
+                onClick = {() => setShowRating(true)}
+                className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
                   click to play
                 </Button>
+                {showRating && (
+                  <div className="mt-4 border rounded p-4 shadow bg-gray-50">
+                    <FingerRating />
+                    <button
+                      onClick={() => setShowRating(false)}
+                      className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+                    >
+                      Close
+                    </button>
+                  </div>
+                )}
+  
                 <Button variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-6 py-3 rounded-full font-semibold transition-all duration-300">
                   placehoelder
                 </Button>
