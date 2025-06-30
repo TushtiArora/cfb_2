@@ -13,11 +13,13 @@ import Footer from "@/components/Footer";
 import Silk from "@/components/Silk";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
 
 const Pro = () => {
   const { user } = useAuth();
   const { toast } = useToast();
   const [selectedPlan, setSelectedPlan] = useState('monthly');
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: user?.email || '',
@@ -61,7 +63,7 @@ const Pro = () => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handlePayment = () => {
+  const handlePayment = async() => {
     if (!user) {
       toast({
         title: "Please sign in",
@@ -80,6 +82,40 @@ const Pro = () => {
       return;
     }
 
+    try {
+      setIsLoading(true);
+      toast({
+        title: "Processing payment...",
+        description: "Redirecting to Stripe...",
+      });
+
+      const response = await axios.post("https://payment-backend-9nf4.onrender.com/create-checkout-session", {
+        name: formData.name,
+        email: formData.email,
+        githubUsername: formData.githubUsername,
+        selectedPlan,
+      });
+
+      if (response.data.url) {
+        window.location.href = response.data.url; //  redirect to Stripe
+      } else {
+        setIsLoading(false);
+        toast({
+          title: "Error",
+          description: "No URL returned from server",
+          variant: "destructive",
+        });
+      }
+    } catch (error: any) {
+      setIsLoading(false);
+      console.error("Payment error:", error);
+      toast({
+        title: "Payment Failed",
+        description: error.response?.data?.error || "An unexpected error occurred.",
+        variant: "destructive"
+      });
+    }
+
     // Here you would integrate with Razorpay or Stripe
     toast({
       title: "Payment processing",
@@ -92,7 +128,7 @@ const Pro = () => {
         title: "Welcome to openPR Pro! 🎉",
         description: "Your account has been upgraded successfully.",
       });
-    }, 2000);
+    }, 5000);
   };
 
   const selectedPlanData = plans.find(plan => plan.id === 'pro');
