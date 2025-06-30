@@ -1,3 +1,15 @@
+// import FingerRating from "@/components/dashboards/FingerRating";
+
+// function App() {
+//   return (
+//     <div className="p-10">
+//       <h1 className="text-2xl font-bold mb-4">Test Finger Rating</h1>
+//       <FingerRating />
+//     </div>
+//   );
+// }
+
+// export default App;
 
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -13,6 +25,7 @@ import Mentors from "./pages/Mentors";
 import Pro from "./pages/Pro";
 import NotFound from "./pages/NotFound";
 import ProfileSetup from "./pages/ProfileSetup";
+import FingerRating from "@/components/dashboards/FingerRating";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +45,7 @@ const App = () => (
             <Route path="/mentors" element={<Mentors />} />
             <Route path="/pro" element={<Pro />} />
             <Route path="/pricing" element={<Pro />} />
+            <Route path="/review" element={<FingerRating />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
