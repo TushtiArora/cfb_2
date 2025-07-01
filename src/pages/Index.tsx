@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Silk from "@/components/Silk";
+import ProjectMatchingChatbot from "@/components/ProjectMatchingChatbot";
 import { useAuth } from "@/contexts/AuthContext";
 import FingerRating from "@/components/dashboards/FingerRating";
 
@@ -339,6 +340,12 @@ const Index = () => {
       </main>
 
       <Footer />
+
+      Add commentMore actions
+      {/* AI Project Matching Chatbot */}
+      <ProjectMatchingChatbot />
+
+      
     </div>
   );
 };
