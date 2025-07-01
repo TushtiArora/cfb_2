@@ -223,7 +223,7 @@ const Index = () => {
               </h3>
 
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                rate openPR in a fun way!
+                Let's rate openPR in a fun way!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -251,26 +251,34 @@ const Index = () => {
                 </div>
               </> */}
 
-                <Button
-                onClick = {() => setShowRating(true)}
-                className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  click to play
-                </Button>
-                {showRating && (
-                  <div className="mt-4 border rounded p-4 shadow bg-gray-50">
-                    <FingerRating />
-                    <button
-                      onClick={() => setShowRating(false)}
-                      className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
-                    >
-                      Close
-                    </button>
-                  </div>
-                )}
+                  {!showRating ? (
+                    // Centered button BEFORE webcam opens
+                    <div className="flex items-center justify-center h-full">
+                      <Button
+                        onClick={() => setShowRating(true)}
+                        className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300"
+                      >
+                        Click to Play
+                      </Button>
+                    </div>
+                  ) : (
+                    // Webcam section AFTER clicking "Click to Play"
+                    <div className="flex flex-col items-center space-y-6">
+                      <FingerRating />
+                      <button
+                        onClick={() => setShowRating(false)}
+                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  )}
+                
+
+
+
   
-                <Button variant="outline" className="border-purple-400 text-purple-300 hover:bg-purple-500/10 px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  placehoelder
-                </Button>
+  
               </div>
             </div>
           </div>
