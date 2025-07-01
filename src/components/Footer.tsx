@@ -10,7 +10,7 @@ const Footer = () => {
       { name: 'Integrations', href: '/integrations' },
     ],
     community: [
-      { name: 'Discord', href: '/discord' },
+      { name: 'Discord', href: 'https://discord.gg/C7nmWcAS' },
       { name: 'GitHub', href: '/github' },
       { name: 'Blog', href: '/blog' },
       { name: 'Events', href: '/events' },
