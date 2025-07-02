@@ -46,8 +46,6 @@ const App = () => (
             <Route path="/pro" element={<Pro />} />
             <Route path="/pricing" element={<Pro />} />
             <Route path="/review" element={<FingerRating />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
