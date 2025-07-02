@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
 import Silk from "@/components/Silk";
-import { Hands } from "@mediapipe/hands";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { HAND_CONNECTIONS } from "@mediapipe/hands";
 import * as cam from "@mediapipe/camera_utils";
-
+import * as HandsModule from "@mediapipe/hands";
+const Hands = HandsModule.Hands;
 
 const FingerRating = () => {
   const webcamRef = useRef<Webcam>(null);
