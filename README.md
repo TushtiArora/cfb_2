@@ -420,18 +420,4 @@ A: Currently, OpenPR focuses on public open source projects.
 
 ---
 
-## 📊 Project Stats
-
-![GitHub stars](https://img.shields.io/github/stars/Pasta-coder/openpr?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Pasta-coder/openpr?style=social)
-![GitHub issues](https://img.shields.io/github/issues/Pasta-coder/openpr)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/Pasta-coder/openpr)
-
----
-
-<div align="center">
-
-**Made with ❤️ by the OpenPR Team**
-
-[Website](https://cfb-2.onrender.com/) • [Discord](https://discord.com/invite/C7nmWcAS) 
 </div>
