@@ -60,9 +60,6 @@ const Index = () => {
         {/* Hero Section */}
         <section className="container mx-auto px-4 pt-20 pb-32">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 px-4 py-2 text-sm font-medium">
-              🚀 Now in Public Beta
-            </Badge>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent leading-tight">
               Open Source.
@@ -167,7 +164,7 @@ const Index = () => {
               </div>
               
               <h3 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent text-center">
-                💡 Become a Mentor on openPR
+                💡 Become a Mentor on OpenPR
               </h3>
               
               <p className="text-xl text-gray-300 mb-8 leading-relaxed text-center max-w-2xl mx-auto">
@@ -230,7 +227,7 @@ const Index = () => {
               </h3>
 
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                Let's rate openPR in a fun way!
+                Let's rate OpenPR in a fun way!
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -285,9 +282,11 @@ const Index = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
-                  Join Discord Community
-                </Button>
+                <Link to='https://discord.gg/C7nmWcAS'>
+                  <Button className="bg-discord-purple hover:bg-discord-purple/80 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300">
+                    Join Discord Community
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
