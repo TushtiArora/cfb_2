@@ -1,0 +1,16 @@
+services:
+  - type: static
+    name: cfb-2
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /.*         
+        destination: /index.html
+    headers:
+      - source: /*
+        headers:
+          - key: Content-Security-Policy
+            value: "default-src * blob: data: 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval';"
+

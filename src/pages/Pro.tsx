@@ -97,7 +97,7 @@ const Pro = () => {
       });
 
       if (response.data.url) {
-        window.location.href = response.data.url; //  redirect to Stripe
+        window.open(response.data.url, "_blank"); // ✅ opens Stripe in a new tab
       } else {
         setIsLoading(false);
         toast({
@@ -116,20 +116,19 @@ const Pro = () => {
       });
     }
 
-    // Here you would integrate with Razorpay or Stripe
     toast({
       title: "Payment processing",
       description: "Redirecting to secure payment gateway...",
     });
-    
-    // Mock payment success
-    setTimeout(() => {
+
+    /*setTimeout(() => {
       toast({
         title: "Welcome to openPR Pro! 🎉",
         description: "Your account has been upgraded successfully.",
       });
-    }, 5000);
+    }, 5000);*/
   };
+
 
   const selectedPlanData = plans.find(plan => plan.id === 'pro');
   const price = selectedPlan === 'monthly' ? selectedPlanData?.monthly : selectedPlanData?.quarterly;

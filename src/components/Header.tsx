@@ -35,7 +35,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent hover:from-purple-300 hover:via-pink-300 hover:to-purple-300 transition-all duration-300">
-            openPR
+            OpenPR
           </Link>
 
           {/* Desktop Navigation */}
