@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
@@ -5,35 +7,33 @@ import Silk from "@/components/Silk";
 import { drawConnectors, drawLandmarks } from "@mediapipe/drawing_utils";
 import { HAND_CONNECTIONS } from "@mediapipe/hands";
 import * as cam from "@mediapipe/camera_utils";
-import * as HandsModule from "@mediapipe/hands";
-const Hands = HandsModule.Hands;
+import { Hands } from "@mediapipe/hands";
 
 const FingerRating = () => {
   const webcamRef = useRef<Webcam>(null);
-  const canvasRef = useRef(null); 
-  const [fingerCount, setFingerCount] = useState<number>(0); 
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [fingerCount, setFingerCount] = useState<number>(0);
   const [rating, setRating] = useState<number | null>(null);
   const [remark, setRemark] = useState("");
   const [countdown, setCountdown] = useState<number | null>(null);
   const [capturedImage, setCapturedImage] = useState<Blob | null>(null);
   const [submitting, setSubmitting] = useState(false);
-  
 
   const startCountdownAndCapture = () => {
-  let timeLeft = 5;
-  setCountdown(timeLeft);
+    let timeLeft = 5;
+    setCountdown(timeLeft);
 
-  const interval = setInterval(() => {
-    timeLeft -= 1;
-    if (timeLeft === 0) {
-      clearInterval(interval);
-      setCountdown(null);
-      captureAndRate(); // actual capture
-    } else {
-      setCountdown(timeLeft);
-    }
-  }, 1000);
-};
+    const interval = setInterval(() => {
+      timeLeft -= 1;
+      if (timeLeft === 0) {
+        clearInterval(interval);
+        setCountdown(null);
+        captureAndRate();
+      } else {
+        setCountdown(timeLeft);
+      }
+    }, 1000);
+  };
 
   const captureAndRate = async () => {
     const screenshot = webcamRef.current?.getScreenshot();
@@ -46,7 +46,7 @@ const FingerRating = () => {
     setCapturedImage(blob);
 
     const formData = new FormData();
-    formData.append("image", blob, "frame.jpg");
+    formData.append("image", blob, "frame.joinpg");
 
     try {
       const res = await axios.post("https://funzonebackend.onrender.com/rate", formData, {
@@ -96,13 +96,11 @@ const FingerRating = () => {
       setSubmitting(false);
     }
   };
-  function countRaisedFingers(landmarks:any) {
-    let count = 0;
 
-    // Thumb
+  const countRaisedFingers = (landmarks: any) => {
+    let count = 0;
     if (landmarks[4].x > landmarks[3].x) count++;
 
-    // Other fingers
     const tips = [8, 12, 16, 20];
     const pips = [6, 10, 14, 18];
 
@@ -111,7 +109,7 @@ const FingerRating = () => {
     }
 
     return count;
-  }
+  };
 
   useEffect(() => {
     let cameraInstance: any = null;
@@ -123,13 +121,15 @@ const FingerRating = () => {
     hands.setOptions({
       maxNumHands: 1,
       modelComplexity: 1,
-      minDetectionConfidence: 0.8,
-      minTrackingConfidence: 0.8,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
     });
 
     hands.onResults((results) => {
       const canvas = canvasRef.current;
+      if (!canvas) return;
       const ctx = canvas.getContext("2d");
+      if (!ctx) return;
 
       ctx.save();
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -141,11 +141,12 @@ const FingerRating = () => {
         setFingerCount(count);
 
         drawConnectors(ctx, landmarks, HAND_CONNECTIONS, {
-          color: "#FFFFFF",
+          color: "white",
           lineWidth: 3,
         });
+
         drawLandmarks(ctx, landmarks, {
-          color: "#6F2DA8",
+          color: "#6F2DA8", // Purple
           lineWidth: 2,
         });
 
@@ -167,7 +168,7 @@ const FingerRating = () => {
 
         cameraInstance = new cam.Camera(webcamRef.current.video, {
           onFrame: async () => {
-            await hands.send({ image: webcamRef.current.video });
+            await hands.send({ image: webcamRef.current!.video! });
           },
           width: 640,
           height: 480,
@@ -177,29 +178,21 @@ const FingerRating = () => {
       }
     }, 100);
 
-    // 🔁 Cleanup on unmount
     return () => {
-      if (cameraInstance) {
-        cameraInstance.stop();
-      }
+      if (cameraInstance) cameraInstance.stop();
 
-      // Extra cleanup to stop webcam stream manually
-      if (webcamRef.current && webcamRef.current.video?.srcObject) {
+      if (webcamRef.current?.video?.srcObject) {
         const tracks = (webcamRef.current.video.srcObject as MediaStream).getTracks();
         tracks.forEach((track) => track.stop());
       }
     };
   }, []);
 
-
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
       <Silk />
       <div className="flex flex-col items-center justify-center min-h-screen">
-
         <div className="relative w-[640px] h-[480px] rounded-lg overflow-hidden bg-black">
-          {/* Webcam */}
           <Webcam
             audio={false}
             ref={webcamRef}
@@ -208,7 +201,6 @@ const FingerRating = () => {
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
           />
 
-          {/* Canvas */}
           <canvas
             ref={canvasRef}
             width={640}
@@ -216,8 +208,6 @@ const FingerRating = () => {
             className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none"
           />
         </div>
-
-
 
         <button
           onClick={startCountdownAndCapture}
@@ -227,10 +217,9 @@ const FingerRating = () => {
           {countdown !== null ? `Capturing in ${countdown}...` : "📸 Capture & Detect Fingers"}
         </button>
 
-
         {rating !== null && (
           <div className="mt-6">
-            <p className="text-lg mb-2" >Detected Rating:</p>
+            <p className="text-lg mb-2">Detected Rating:</p>
             <div className="text-3xl mb-4">
               {[...Array(5)].map((_, i) => (
                 <span key={i} className={i < rating ? "text-yellow-400" : "text-gray-300"}>
@@ -256,8 +245,9 @@ const FingerRating = () => {
           </div>
         )}
       </div>
-  </div>
+    </div>
   );
 };
 
 export default FingerRating;
+
